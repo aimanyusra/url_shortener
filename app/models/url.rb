@@ -1,18 +1,20 @@
 require	'securerandom'
 
 class Url < ApplicationRecord
-	validates :original_url, presence: true, uniqueness: true
+	
+	validates :long_url, presence: true, uniqueness: true
 	validates :short_url, presence: true, uniqueness: true
-	validates_format_of :original_url, :with => /([A-Za-z0-9]{3,50}\.[A-Za-z0-9]{2,5}.*)|(https:\/\/[A-Za-z0-9]{3,50}\.[A-Za-z0-9]{2,3}.*)|(http:\/\/[A-Za-z0-9]{3,50}\.[A-Za-z0-9]{2,3}.*)/i
+	validates_format_of :long_url, :with => /([A-Za-z0-9]{3,50}\.[A-Za-z0-9]{2,5}.*)|(https:\/\/[A-Za-z0-9]{3,50}\.[A-Za-z0-9]{2,3}.*)|(http:\/\/[A-Za-z0-9]{3,50}\.[A-Za-z0-9]{2,3}.*)/i
 
-	# before_save :shortenlink
+	# before_save :shorten
 
 	# def shortenlink
 
 	# end
 
-	def self.shorten 
-		return SecureRandom.urlsafe_base64(4)
+	def shorten
+	
+		self.short_url = SecureRandom.urlsafe_base64(4)
 	end
 
 	def counter
@@ -27,7 +29,7 @@ class Url < ApplicationRecord
 	        url_str = "http://" + url_str
 	    end
 	  end  
-	  write_attribute :original_url, url_str
+	  write_attribute :long_url, url_str
 	end
 
 end
