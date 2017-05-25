@@ -4,6 +4,10 @@ class UrlsController < ApplicationController
 	end
 
 	def show
-    @url = Url.find(params[:id])
+    	@url = Url.find(params[:id])
+	end
+
+	def new
+  		@url = Url.new
 	end
 end

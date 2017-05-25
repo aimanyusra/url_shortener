@@ -31,4 +31,4 @@ class Url < ApplicationRecord
 	end
 
 end
-end
+
