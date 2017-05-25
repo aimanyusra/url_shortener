@@ -3,5 +3,7 @@ class UrlsController < ApplicationController
 		@urls = Url.all
 	end
 
-
+	def show
+    @url = Url.find(params[:id])
+	end
 end
